@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Random generated hex colored squares</title>
+    <title>Random generated colored squares</title>
     <style>
       * {
         margin: 0;
@@ -25,11 +25,20 @@
         height: 100%;
         text-align: center;
         display: table;
+        transition: background 1s;
       }
-      .row div span {
+      .row div:last-child {
+        display: none;
+      }
+      .row div > span {
         display: table-cell;
         vertical-align: middle;
         color: #888;
+      }
+      .row div.float-right {
+        float: right;
+        background-color: #fff !important;
+        font-family: sans-serif;
       }
       @media screen and (min-width: 568px) {
         .row div {
@@ -40,11 +49,21 @@
         .row div {
           width: 20%;
         }
+        .row div:last-child {
+          display: table;
+        }
       }
     </style>
 </head>
 <body>
   <div class="row">
+    <div class="float-right">
+      <span>
+        <p>Random generated colored squares</p>
+          <svg class="randomize" height="141.73" viewBox="0 0 141.73 141.73" width="141.73" xmlns="http://www.w3.org/2000/svg"><g fill="#575756"><path d="M101.648 40.093c-8.22-8.22-19.15-12.747-30.773-12.747s-22.553 4.526-30.772 12.746S27.355 59.24 27.355 70.865s4.527 22.554 12.747 30.773 19.15 12.746 30.774 12.746c11.624 0 22.553-4.526 30.772-12.746 16.97-16.968 16.968-44.577 0-61.545zm-1.413 60.132c-7.842 7.842-18.27 12.16-29.358 12.16-11.09 0-21.518-4.318-29.36-12.16-7.842-7.843-12.16-18.27-12.16-29.36s4.318-21.516 12.16-29.358c7.842-7.842 18.27-12.16 29.358-12.16s21.517 4.32 29.36 12.16c16.188 16.188 16.188 42.53 0 58.718z"/><path d="M82.797 67.445a.997.997 0 0 0 1.414 0l4.38-4.377a1.004 1.004 0 0 0 .216-1.093 1.004 1.004 0 0 0-.217-.323l-4.38-4.377a1 1 0 0 0-1.413 1.414l2.672 2.67h-.42c-5.72 0-10.013 4.023-14.097 8.17-4.133-4.12-8.462-8.17-14.252-8.17h-2.833a1 1 0 0 0 0 2H56.7c5 0 8.853 3.61 12.852 7.597-4 4.068-7.855 7.754-12.85 7.754h-2.835a1 1 0 0 0 0 2H56.7c5.8 0 10.13-4.136 14.266-8.34 4.082 4.06 8.372 7.998 14.082 7.998h.42l-2.67 2.67a1 1 0 0 0 1.413 1.415l4.38-4.377a1.004 1.004 0 0 0 .216-1.093 1.004 1.004 0 0 0-.217-.323l-4.38-4.377a1 1 0 0 0-1.413 1.414l2.672 2.67h-.422c-4.928 0-8.742-3.506-12.68-7.425 3.94-4 7.756-7.582 12.68-7.582h.42l-2.67 2.67a1 1 0 0 0 0 1.415z"/></g></svg>
+        
+      </span>
+    </div>
     <div></div>
     <div></div>
     <div></div>
@@ -72,9 +91,13 @@
   </div>
   <script>
     var row = document.body.querySelector(".row");
-    var div = document.body.querySelectorAll(".row div");
-
+    var div = row.querySelectorAll("div:not(.float-right)");
+    var randomize = row.querySelector(".randomize");
+    
     resize();
+    paintSquares();
+    
+    randomize.addEventListener("click", paintSquares);
 
     window.onresize = resize;
 
@@ -82,12 +105,14 @@
       var height = div[0].offsetWidth;
       row.style.height = height + "px";
     };
-
-    for (var index = 0; index < div.length; index++) {
-      ran_col(div[index]);
+    
+    function paintSquares() {
+      for (var index = 0; index < div.length; index++) {
+        randomColor(div[index]);
+      }
     }
-
-    function ran_col(el) {
+    
+    function randomColor(el) {
       var color = "";
       var letters = '0123456789ABCDEF'.split('');
       //For loop that will create random hexadecimal value.
