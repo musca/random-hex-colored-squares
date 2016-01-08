@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Squared layout</title>
+    <title>Random generated hex colored squares</title>
     <style>
       * {
         margin: 0;
@@ -33,7 +33,7 @@
       }
       @media screen and (min-width: 568px) {
         .row div {
-          width: 33%;
+          width: 33.3333%;
         }
       }
       @media screen and (min-width: 1024px) {
@@ -87,15 +87,24 @@
       ran_col(div[index]);
     }
 
-    function ran_col(el) { //function name
-      var color = '#'; // hexadecimal starting symbol
-      var letters = '0123456789ABCDEF'.split(''); //hexadecimal color letters
+    function ran_col(el) {
+      var color = "";
+      var letters = '0123456789ABCDEF'.split('');
       //For loop that will create random hexadecimal value.
       for (var i = 0; i < 6; i++) {
         color += letters[Math.round(Math.random() * 15)];
       }
-      el.style.background = color; // Setting the random color on your element.
-      el.innerHTML = "<span>"+color+"</span>";
+      el.style.background = '#'+color;
+      el.innerHTML = "<span>#"+color+"<br>RGB("+hexToRgb(color)+")</span>";
+    }
+    
+    function hexToRgb(hex) {
+        var bigint = parseInt(hex, 16);
+        var r = (bigint >> 16) & 255;
+        var g = (bigint >> 8) & 255;
+        var b = bigint & 255;
+
+        return [r, g, b].join();
     }
   </script>
 </body>
