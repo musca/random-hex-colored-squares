@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Squared layout</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ::-moz-selection { 
+        color: #111;
+        background: yellow; 
+      }
+      ::selection { 
+        color: #111;
+        background: yellow; 
+      }
+      .row {
+        width: 100%;
+      }
+      .row div {
+        float: left;
+        width: 50%;
+        height: 100%;
+        border: .5% solid #333;
+        text-align: center;
+        display: table;
+      }
+      .row div span {
+        display: table-cell;
+        vertical-align: middle;
+        color: #888;
+      }
+      @media screen and (min-width: 568px) {
+        .row div {
+          width: 33%;
+        }
+      }
+      @media screen and (min-width: 1024px) {
+        .row div {
+          width: 20%;
+        }
+      }
+    </style>
+</head>
+<body>
+  <div class="row">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <script>
+    var row = document.body.querySelector(".row");
+    var div = document.body.querySelectorAll(".row div");
+
+    resize();
+
+    window.onresize = resize;
+
+    function resize() {
+      var height = div[0].offsetWidth;
+      row.style.height = height + "px";
+    };
+
+    for (var index = 0; index < div.length; index++) {
+      ran_col(div[index]);
+    }
+
+    function ran_col(el) { //function name
+      var color = '#'; // hexadecimal starting symbol
+      var letters = '0123456789ABCDEF'.split(''); //hexadecimal color letters
+      //For loop that will create random hexadecimal value.
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.round(Math.random() * 15)];
+      }
+      el.style.background = color; // Setting the random color on your element.
+      el.innerHTML = "<span>"+color+"</span>";
+    }
+  </script>
+</body>
+</html>
