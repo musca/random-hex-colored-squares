@@ -3,80 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Random generated colored squares</title>
-    <style>
-      *, *:before, *:after {
-        box-sizing: inherit;
-        margin: 0;
-        padding: 0;
-      }
-      html {
-        box-sizing: border-box;
-      }
-      ::-moz-selection { 
-        color: #111;
-        background: yellow; 
-      }
-      ::selection { 
-        color: #111;
-        background: yellow; 
-      }
-      .row {
-        width: 100%;
-        display: inline-block;
-      }
-      .row div {
-        float: left;
-        width: 50%;
-        height: 100%;     
-        transition: background 1s;
-      }
-      .row div > p {
-        text-align: center;
-        display: table;
-        width: 100%;
-        height: 100%;
-        table-layout: fixed
-      }
-      .row div:last-child {
-        display: none;
-      }
-      .row div > p > span {
-        display: table-cell;
-        vertical-align: middle;
-        color: #888;
-      }
-      .row div span > span {
-        width: 100%;
-        display: inline-block
-      }
-      .randomize {
-        cursor: pointer;
-        margin-top: 20px;
-        width: 64px;
-        height: 64px;
-      }
-      .randomize:hover g {       
-        fill: #EC3781;
-      }
-      .row div.float-right {
-        float: right;
-        background-color: #fff !important;
-        font-family: sans-serif;
-      }
-      @media screen and (min-width: 568px) {
-        .row div {
-          width: 33.3333%;
-        }
-      }
-      @media screen and (min-width: 1024px) {
-        .row div {
-          width: 20%;
-        }
-        .row div:last-child {
-          display: table;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="dist/css/index.css">
+    <script src="dist/js/index.js"></script>
 </head>
 <body>
   <div class="row">
@@ -114,49 +42,5 @@
     <div></div>
     <div></div>
   </div>
-  <script>
-    "use strict";
-    
-    var row = document.body.querySelector(".row");
-    var div = row.querySelectorAll("div:not(.float-right)");
-    var randomize = row.querySelector(".randomize");
-    
-    rowHeight();
-    paintSquares();
-    
-    randomize.addEventListener("click", paintSquares);
-    window.addEventListener("resize", rowHeight, true);
-
-    function rowHeight() {
-      var height = div[0].offsetWidth;
-      row.style.height = height + "px";
-    };
-    
-    function paintSquares() {
-      for (var index = 0; index < div.length; index++) {
-        randomColor(div[index]);
-      }
-    }
-    
-    function randomColor(el) {
-      var color = "";
-      var letters = '0123456789ABCDEF'.split('');
-      //For loop that will create random hexadecimal value.
-      for (var i = 0; i < 6; i++) {
-        color += letters[Math.round(Math.random() * 15)];
-      }
-      el.style.background = '#'+color;
-      el.innerHTML = "<p><span>#"+color+"<br>RGB("+hexToRgb(color)+")</span></p>";
-    }
-    
-    function hexToRgb(hex) {
-        var bigint = parseInt(hex, 16);
-        var r = (bigint >> 16) & 255;
-        var g = (bigint >> 8) & 255;
-        var b = bigint & 255;
-
-        return [r, g, b].join();
-    }
-  </script>
 </body>
 </html>

@@ -1,0 +1,72 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+html {
+  box-sizing: border-box;
+}
+::-moz-selection { 
+  color: #111;
+  background: yellow; 
+}
+::selection { 
+  color: #111;
+  background: yellow; 
+}
+.row {
+  width: 100%;
+  display: inline-block;
+}
+.row div {
+  float: left;
+  width: 50%;
+  height: 100%;     
+  transition: background 1s;
+}
+.row div > p {
+  text-align: center;
+  display: table;
+  width: 100%;
+  height: 100%;
+  table-layout: fixed
+}
+.row div:last-child {
+  display: none;
+}
+.row div > p > span {
+  display: table-cell;
+  vertical-align: middle;
+  color: #888;
+}
+.row div span > span {
+  width: 100%;
+  display: inline-block
+}
+.randomize {
+  cursor: pointer;
+  margin-top: 20px;
+  width: 64px;
+  height: 64px;
+}
+.randomize:hover g {       
+  fill: #EC3781;
+}
+.row div.float-right {
+  float: right;
+  background-color: #fff !important;
+  font-family: sans-serif;
+}
+@media screen and (min-width: 568px) {
+  .row div {
+    width: 33.3333%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .row div {
+    width: 20%;
+  }
+  .row div:last-child {
+    display: table;
+  }
+}
