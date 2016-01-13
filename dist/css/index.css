@@ -24,6 +24,10 @@ html {
   height: 100%;     
   transition: background 1s;
 }
+.row div:hover span,
+.row div.float-right span {
+  color: #888;
+}
 .row div > p {
   text-align: center;
   display: table;
@@ -37,7 +41,7 @@ html {
 .row div > p > span {
   display: table-cell;
   vertical-align: middle;
-  color: #888;
+  color: transparent;
 }
 .row div span > span {
   width: 100%;
