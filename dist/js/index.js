@@ -1,14 +1,28 @@
 "use strict";
 
 ready(function() {
+  var div;
   var row = document.body.querySelector(".row");
-  var div = row.querySelectorAll("div:not(.float-right)");
   var randomize = row.querySelector(".randomize");
-
-  rowHeight();
-  paintSquares();
-
   randomize.addEventListener("click", paintSquares);
+  init(function() {
+    rowHeight();
+    paintSquares();
+    
+  });
+  
+  function init(callback) {
+    var html = [];
+    for (var i=0; i < 24; i++) {
+      html.push('<div></div>');
+    };
+    //row.innerHTML += html.join('');
+    row.insertAdjacentHTML("beforeend", html.join(''));
+    div = row.querySelectorAll("div:not(.float-right)");  
+    // if callback exist execute it
+    callback && callback();
+  }
+  
   window.addEventListener("resize", rowHeight, true);
 
   function rowHeight() {
