@@ -4,7 +4,9 @@ ready(function() {
   var div;
   var row = document.body.querySelector(".row");
   var randomize = row.querySelector(".randomize");
+  
   randomize.addEventListener("click", paintSquares);
+  
   init(function() {
     rowHeight();
     paintSquares();
@@ -16,7 +18,6 @@ ready(function() {
     for (var i=0; i < 24; i++) {
       html.push('<div></div>');
     };
-    //row.innerHTML += html.join('');
     row.insertAdjacentHTML("beforeend", html.join(''));
     div = row.querySelectorAll("div:not(.float-right)");  
     // if callback exist execute it
