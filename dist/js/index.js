@@ -15,7 +15,7 @@ ready(function() {
   
   function init(callback) {
     var html = [];
-    for (var i=0; i < 24; i++) {
+    for (var i=0; i < 34; i++) {
       html.push('<div></div>');
     };
     row.insertAdjacentHTML("beforeend", html.join(''));

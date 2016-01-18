@@ -45,7 +45,8 @@ html {
 }
 .row div span > span {
   width: 100%;
-  display: inline-block
+  display: inline-block;
+  padding: 0 20px;
 }
 .randomize {
   cursor: pointer;
@@ -53,7 +54,8 @@ html {
   width: 64px;
   height: 64px;
 }
-.randomize:hover g {       
+.randomize:hover g,
+.randomize:hover path {       
   fill: #EC3781;
 }
 .row div.float-right {
@@ -66,7 +68,7 @@ html {
     width: 33.3333%;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 960px) {
   .row div {
     width: 20%;
   }
