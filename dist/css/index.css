@@ -18,27 +18,34 @@ html {
   width: 100%;
   display: inline-block;
 }
-.row div {
+.row > div {
   float: left;
   width: 50%;
-  height: 100%;     
+  padding-bottom: 50%;    
+  position: relative;
   transition: background 1s;
 }
 .row div:hover span,
 .row div.float-right span {
   color: #888;
 }
-.row div > p {
+.row div div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.row div div > p {
   text-align: center;
   display: table;
   width: 100%;
   height: 100%;
   table-layout: fixed
 }
-.row div:last-child {
+.row > div:last-child {
   display: none;
 }
-.row div > p > span {
+.row div div > p > span {
   display: table-cell;
   vertical-align: middle;
   color: transparent;
@@ -64,15 +71,17 @@ html {
   font-family: sans-serif;
 }
 @media screen and (min-width: 568px) {
-  .row div {
+  .row > div {
     width: 33.3333%;
+    padding-bottom: 33.3333%;
   }
 }
 @media screen and (min-width: 960px) {
-  .row div {
+  .row > div {
     width: 20%;
+    padding-bottom: 20%;
   }
-  .row div:last-child {
+  .row > div:last-child {
     display: table;
   }
 }

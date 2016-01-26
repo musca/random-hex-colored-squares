@@ -8,9 +8,7 @@ ready(function() {
   randomize.addEventListener("click", paintSquares);
   
   init(function() {
-    rowHeight();
-    paintSquares();
-    
+    paintSquares();  
   });
   
   function init(callback) {
@@ -19,18 +17,11 @@ ready(function() {
       html.push('<div></div>');
     };
     row.insertAdjacentHTML("beforeend", html.join(''));
-    div = row.querySelectorAll("div:not(.float-right)");  
+    div = row.querySelectorAll(".row > div:not(.float-right)");  
     // if callback exist execute it
     callback && callback();
   }
   
-  window.addEventListener("resize", rowHeight, true);
-
-  function rowHeight() {
-    var height = div[0].offsetWidth;
-    row.style.height = height + "px";
-  };
-
   function paintSquares() {
     for (var index = 0; index < div.length; index++) {
       randomColor(div[index]);
@@ -45,7 +36,7 @@ ready(function() {
       color += letters[Math.round(Math.random() * 15)];
     }
     el.style.background = '#'+color;
-    el.innerHTML = "<p><span>#"+color+"<br>RGB("+hexToRgb(color)+")</span></p>";
+    el.innerHTML = "<div><p><span>#"+color+"<br>RGB("+hexToRgb(color)+")</span></p></div>";
   }
 
   function hexToRgb(hex) {
